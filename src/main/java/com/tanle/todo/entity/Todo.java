@@ -19,6 +19,7 @@ public class Todo {
 	private String title;
 	@Column(nullable=false)
 	private String description;
+	
 	private boolean completed;
 	
 	public Todo() {
