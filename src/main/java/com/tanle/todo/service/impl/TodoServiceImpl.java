@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.tanle.todo.dto.TodoDto;
 import com.tanle.todo.entity.Todo;
+import com.tanle.todo.exception.ResourceNotFoundException;
 import com.tanle.todo.repository.TodoRepository;
 import com.tanle.todo.service.TodoService;
 
@@ -30,7 +31,8 @@ public class TodoServiceImpl implements TodoService{
 
 	@Override
 	public TodoDto getTaskById(Long id) {
-		Todo todo = todoRepository.findById(id).get();
+		Todo todo = todoRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("No Task with Id: " + id));
 		
 		return modelMapper.map(todo, TodoDto.class);
 	}
