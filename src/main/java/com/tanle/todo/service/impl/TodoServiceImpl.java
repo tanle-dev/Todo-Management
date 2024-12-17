@@ -1,5 +1,9 @@
 package com.tanle.todo.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +39,15 @@ public class TodoServiceImpl implements TodoService{
 				() -> new ResourceNotFoundException("No Task with Id: " + id));
 		
 		return modelMapper.map(todo, TodoDto.class);
+	}
+
+	@Override
+	public List<TodoDto> getAllTasks() {
+		List<Todo> todoList = todoRepository.findAll();
+		List<TodoDto> todoDtoList = new ArrayList<TodoDto>();
+		todoList.forEach(todo -> todoDtoList.add(modelMapper.map(todo, TodoDto.class)));
+		
+		return todoDtoList;
 	}
 
 }

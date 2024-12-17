@@ -1,5 +1,7 @@
 package com.tanle.todo.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,5 +37,12 @@ public class TodoController {
 		TodoDto todoDto = todoService.getTaskById(id);
 		
 		return new ResponseEntity<TodoDto>(todoDto, HttpStatus.OK);
+	}
+	
+	@GetMapping()
+	public ResponseEntity<List<TodoDto>> getAllTasks(){
+		List<TodoDto> todoDtoList = todoService.getAllTasks();
+		
+		return new ResponseEntity<List<TodoDto>>(todoDtoList, HttpStatus.OK);
 	}
 }
