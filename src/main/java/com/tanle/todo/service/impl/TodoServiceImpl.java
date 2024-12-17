@@ -50,4 +50,17 @@ public class TodoServiceImpl implements TodoService{
 		return todoDtoList;
 	}
 
+	@Override
+	public TodoDto updateTask(TodoDto todoDto, Long id) {
+		TodoDto existedTask = getTaskById(id);
+		
+		existedTask.setTitle(todoDto.getTitle());
+		existedTask.setDescription(todoDto.getDescription());
+		existedTask.setCompleted(todoDto.isCompleted());
+		
+		Todo updatedTask = todoRepository.save(modelMapper.map(existedTask, Todo.class));
+		
+		return modelMapper.map(updatedTask, TodoDto.class);
+	}
+
 }
