@@ -15,4 +15,8 @@ public interface TodoService {
 	public TodoDto updateTask(TodoDto todoDto, Long id);
 	
 	public void deleteTask(Long id);
+	
+	public TodoDto compleTask(Long id);
+	
+	public TodoDto incompleteTask(Long id);
 }

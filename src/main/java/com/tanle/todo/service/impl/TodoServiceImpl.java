@@ -70,4 +70,24 @@ public class TodoServiceImpl implements TodoService{
 		todoRepository.delete(modelMapper.map(existedTask, Todo.class));;
 	}
 
+	@Override
+	public TodoDto compleTask(Long id) {
+		TodoDto todoDto = getTaskById(id);
+		
+		todoDto.setCompleted(Boolean.TRUE);
+		Todo completedTask = todoRepository.save(modelMapper.map(todoDto, Todo.class));
+		
+		return modelMapper.map(completedTask, TodoDto.class);
+	}
+
+	@Override
+	public TodoDto incompleteTask(Long id) {
+		TodoDto todoDto = getTaskById(id);
+		
+		todoDto.setCompleted(Boolean.FALSE);
+		Todo completedTask = todoRepository.save(modelMapper.map(todoDto, Todo.class));
+		
+		return modelMapper.map(completedTask, TodoDto.class);
+	}
+
 }
