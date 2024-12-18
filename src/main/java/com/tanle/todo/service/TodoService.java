@@ -13,4 +13,6 @@ public interface TodoService {
 	public List<TodoDto> getAllTasks();
 	
 	public TodoDto updateTask(TodoDto todoDto, Long id);
+	
+	public void deleteTask(Long id);
 }

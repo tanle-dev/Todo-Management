@@ -63,4 +63,11 @@ public class TodoServiceImpl implements TodoService{
 		return modelMapper.map(updatedTask, TodoDto.class);
 	}
 
+	@Override
+	public void deleteTask(Long id) {
+		TodoDto existedTask = getTaskById(id);
+		
+		todoRepository.delete(modelMapper.map(existedTask, Todo.class));;
+	}
+
 }
